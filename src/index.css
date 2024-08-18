@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  color: #000000;
+  font-family: "Inter", sans-serif;
+}
+
+thead {
+  font-weight: 500 !important;
+}
+
+.app-width {
+  @apply max-w-[1400px] mx-auto px-5 lg:px-10;
+}
+
+.mantine-LoadingOverlay-root {
+  position: fixed !important;
+  z-index: 1000 !important;
+  width: 100%;
+  height: 100%;
+}
+label {
+  margin-bottom: 6px;
+  font-weight: 400 !important;
+  font-size: 14px !important;
+  color: #8a8a8a !important;
+}
+
+button.mantine-active.mantine-Pagination-control {
+  color: #232323 !important;
+}
+
+.cc {
+  background: url(./assets/png/cc.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 20%;
+}
+
+.page_title {
+  @apply sm:text-xl lg:text-2xl font-bold
+}
