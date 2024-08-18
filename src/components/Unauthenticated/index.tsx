@@ -4,7 +4,6 @@ import Home from "@pages/Unathenticated/Home";
 const Unauthenticated = () => {
   return (
     <Routes>
-      {/* Customer App */}
       <Route path="/" element={<Home />} />
     </Routes>
   );

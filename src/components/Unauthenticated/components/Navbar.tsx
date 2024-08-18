@@ -17,8 +17,8 @@ const navMenuItems = [
     url: "#about",
   },
   {
-    title: "Product",
-    url: "#product",
+    title: "Products",
+    url: "#products",
   },
 ];
 
@@ -28,11 +28,11 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="z-[999] bg-white text-black  w-full fixed top-0 shadow">
+    <div className="z-[999] bg-white text-black  w-full fixed top-0">
       <nav
         className={`px-5 lg:px-12 max-w-[1440px] flex justify-between ${styles.navbarItems}`}
       >
-        <div className="flex-1">
+        <div className="xl:flex-1">
           <img src={Logo} alt="" />
         </div>
         <div
@@ -46,7 +46,7 @@ const Navbar = () => {
           )}
         </div>
         <div
-          className={` flex-1 ${
+          className={`flex-1 ${
             menu ? styles.nav_menu + " " + styles.active : styles.nav_menu
           }`}
         >
@@ -54,7 +54,7 @@ const Navbar = () => {
             <HashLink smooth to={menu.url}>
               <div
                 key={idx}
-                className={`flex gap-2 items-center relative font-semibold border-b border-transparent text-base md:text-lg cursor-pointer hover:border-pink hover:lg:text-primary-green-50 hover:lg:border-primary-green-50   transition- duration-200 ${
+                className={`flex gap-2 items-center relative border-b border-transparent font-semibold lg:font-normal text-lg md:text-base cursor-pointer hover:border-pink hover:lg:text-primary-green-50 hover:lg:border-primary-green-50   transition- duration-200 ${
                   router.pathname === menu.url
                     ? "lg:border-primary lg:text-primary-green-50"
                     : ""
