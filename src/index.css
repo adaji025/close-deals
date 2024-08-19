@@ -42,3 +42,7 @@ button.mantine-active.mantine-Pagination-control {
 .page_title {
   @apply sm:text-xl lg:text-2xl font-bold
 }
+
+.circle{
+  clip-path: ellipse(80% 120% at 90% 50%);
+}

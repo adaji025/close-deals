@@ -34,7 +34,7 @@ const Testimonies = () => {
             </div>
           </div>
 
-          <div className="px-10 flex gap-5 bg-secondary/40 text-center">
+          <div className="px-10 flex gap-5 bg-secondary/40 text-center rounded">
             <div className="flex items-end h-full w-1/2">
               <img src={Man1} alt="" className="object-cover w-[300px]" />
             </div>
