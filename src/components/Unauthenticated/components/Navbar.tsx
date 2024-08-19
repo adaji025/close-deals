@@ -67,13 +67,13 @@ const Navbar = () => {
 
           <div
             className="lg:hidden text-start font-semibold pb-4 cursor-pointer"
-            onClick={() => navigate("/sign-in")}
+            onClick={() => navigate("/login")}
           >
             login
           </div>
           <div
             className="lg:hidden text-start font-semibold pb-4 cursor-pointer"
-            onClick={() => navigate("/sign-up")}
+            onClick={() => navigate("/")}
           >
             Book Demo
           </div>
@@ -81,7 +81,7 @@ const Navbar = () => {
             <Button
               size="md"
               className="bg-[#E0D5F6] hover:bg-primary/80 hidden lg:block text-black duration-300"
-              onClick={() => navigate("/sign-in")}
+              onClick={() => navigate("/login")}
             >
               Login
             </Button>

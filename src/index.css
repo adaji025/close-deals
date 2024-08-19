@@ -46,3 +46,15 @@ button.mantine-active.mantine-Pagination-control {
 .circle{
   clip-path: ellipse(80% 120% at 90% 50%);
 }
+
+.auth1 {
+  background:  url(./assets/png/close-deals.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.auth2 {
+  background:  rgba(0, 0, 0, .5);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
