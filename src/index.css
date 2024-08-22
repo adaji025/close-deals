@@ -32,29 +32,30 @@ button.mantine-active.mantine-Pagination-control {
   color: #232323 !important;
 }
 
-.cc {
-  background: url(./assets/png/cc.png);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 20%;
-}
-
 .page_title {
-  @apply sm:text-xl lg:text-2xl font-bold
+  @apply sm:text-xl lg:text-2xl font-bold;
 }
 
-.circle{
+.is-active {
+  @apply bg-[#DFD1FB] text-primary font-medium;
+}
+
+.nav-item {
+  @apply flex items-center gap-5 cursor-pointer p-2 whitespace-nowrap rounded-md text-sm;
+}
+
+.circle {
   clip-path: ellipse(80% 120% at 90% 50%);
 }
 
 .auth1 {
-  background:  url(./assets/png/close-deals.png);
+  background: url(./assets/png/close-deals.png);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
 }
 .auth2 {
-  background:  rgba(0, 0, 0, .5);
+  background: rgba(0, 0, 0, 0.5);
   background-repeat: no-repeat;
   background-size: cover;
 }
