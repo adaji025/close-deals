@@ -46,13 +46,6 @@ const CallsChart = () => {
     dataLabels: {
       enabled: false,
     },
-    // grid: {
-    //   yaxis: {
-    //     lines: {
-    //       show: false,
-    //     },
-    //   },
-    // },
 
     colors: ["#5E17EC"],
   };
@@ -65,7 +58,7 @@ const CallsChart = () => {
   ];
 
   return (
-    <div className="bg-primary/5 rounded-xl">
+    <div className="bg-primary/5 rounded-xl h-full">
       <div className="flex justify-between px-5 pt-5">
         <div className="text-lg text-black font-semibold">
           Average Call Duration

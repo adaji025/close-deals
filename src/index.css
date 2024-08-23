@@ -59,3 +59,7 @@ button.mantine-active.mantine-Pagination-control {
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+.cv {
+  background: url(./assets/png/bg.png);
+}

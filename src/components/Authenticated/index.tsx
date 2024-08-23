@@ -19,7 +19,7 @@ const Authenticated = () => {
       </Drawer>
       <div className="flex items-start ">
         <div
-          className={`hidden max-w-[280px] lg:flex flex-col sticky pb-7 top-0 min-h-screen bg-white w-full px-5 duration-300 `}
+          className={`hidden max-w-[230px] lg:flex flex-col sticky pb-7 top-0 min-h-screen bg-white w-full px-5 duration-300 `}
         >
           <div className={`flex justify-center items-center gap-2 py-3 mt-5 `}>
             <img src={Logo} alt="" className={``} />
