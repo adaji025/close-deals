@@ -6,6 +6,7 @@ import { Route, Routes } from "react-router-dom";
 import { useDisclosure } from "@mantine/hooks";
 import Header from "./Header";
 import Dashboard from "@pages/Authenticated/Dashboard";
+import CallHistory from "@pages/Authenticated/CallHistory";
 
 const Authenticated = () => {
   const [opened, { open, close }] = useDisclosure();
@@ -33,6 +34,7 @@ const Authenticated = () => {
           <Header open={open} />
           <Routes>
             <Route path="/" element={<Dashboard />} />
+            <Route path="/call-history" element={<CallHistory />} />
           </Routes>
         </div>
       </div>

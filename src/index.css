@@ -63,3 +63,7 @@ button.mantine-active.mantine-Pagination-control {
 .cv {
   background: url(./assets/png/bg.png);
 }
+
+th, td {
+  height: 50px;
+}
