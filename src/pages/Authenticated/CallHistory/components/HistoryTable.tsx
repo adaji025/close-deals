@@ -7,7 +7,6 @@ const HistoryTable = () => {
   const [page, onChange] = useState(1);
   const pagination = usePagination({ total: 10, page, onChange, siblings: 1 });
 
-  console.log(page);
   return (
     <div className="mt-5 rounded overflow-auto">
       <Table>
@@ -45,7 +44,7 @@ const HistoryTable = () => {
           onClick={pagination.previous}
         >
           <RiArrowLeftFill />
-          <div className="">Previous</div>
+          <div className="text-sm">Previous</div>
         </div>
         <div className="flex">
           {pagination.range.map((page, index) =>
@@ -71,7 +70,7 @@ const HistoryTable = () => {
           onClick={pagination.next}
         >
           <RiArrowRightFill />
-          <div className="">Next</div>
+          <div className="text-sm">Next</div>
         </div>
       </div>
     </div>

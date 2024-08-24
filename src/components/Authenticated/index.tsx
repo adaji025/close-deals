@@ -7,6 +7,8 @@ import { useDisclosure } from "@mantine/hooks";
 import Header from "./Header";
 import Dashboard from "@pages/Authenticated/Dashboard";
 import CallHistory from "@pages/Authenticated/CallHistory";
+import CrmTool from "@pages/Authenticated/CrmTool";
+import CallReport from "@pages/Authenticated/CallReport";
 
 const Authenticated = () => {
   const [opened, { open, close }] = useDisclosure();
@@ -35,6 +37,8 @@ const Authenticated = () => {
           <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="/call-history" element={<CallHistory />} />
+            <Route path="/call-report" element={<CallReport />} />
+            <Route path="/crm-tool" element={<CrmTool />} />
           </Routes>
         </div>
       </div>
