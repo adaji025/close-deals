@@ -5,12 +5,13 @@ import "@mantine/dates/styles.css";
 import "./index.css";
 import { Route, Routes } from "react-router-dom";
 import Authenticated from "@components/Authenticated";
+import Unauthenticated from "@components/Unauthenticated";
 
 export default function App() {
   return (
     <MantineProvider>
       <Routes>
-        <Route path="/*" element={<Authenticated />} />
+        <Route path="/*" element={<Unauthenticated />} />
       </Routes>
     </MantineProvider>
   );

@@ -18,9 +18,9 @@ const Login = () => {
                 Enter Email used to register your account
               </div>
 
-              <TextInput size="md" mt={16} label="Email" />
-              <PasswordInput size="md" mt={16} label="Password" />
-              <Button size="md" mt={20} className="w-full bg-primary">
+              <TextInput size="md" mt={16} label="Email" radius="md" />
+              <PasswordInput size="md" mt={16} label="Password" radius="md" />
+              <Button radius="md" size="md" mt={20} className="w-full bg-primary">
                 Log in
               </Button>
               <div className="mt-4 flex justify-between">
@@ -35,7 +35,7 @@ const Login = () => {
 
               <div
                 className="text-center mt-16 cursor-pointer"
-                onClick={() => navigate("/")}
+                onClick={() => navigate("/sign-up")}
               >
                 Don’t have an account? Click to create an account/Sign up
               </div>

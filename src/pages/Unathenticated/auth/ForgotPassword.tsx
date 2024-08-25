@@ -18,8 +18,9 @@ const ForgotPassword = () => {
                 Enter Email used to register your account
               </div>
 
-              <TextInput size="md" mt={16} label="Email" />
+              <TextInput radius="md" size="md" mt={16} label="Email" />
               <Button
+                radius="md"
                 size="md"
                 mt={20}
                 className="w-full bg-primary"

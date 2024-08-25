@@ -60,6 +60,7 @@ const Settings = () => {
               />
             </div>
           </div>
+
           <div className="flex items-center gap-5 sm:gap-10 ">
             <div>Language</div>
             <div className="max-w-[114px]">
@@ -104,6 +105,7 @@ const Settings = () => {
               />
             </div>
           </div>
+          
         </div>
       </div>
 

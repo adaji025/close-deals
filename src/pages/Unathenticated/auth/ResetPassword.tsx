@@ -19,10 +19,25 @@ const ResetPassword = () => {
                 below and reset your password
               </div>
 
-              <PasswordInput size="md" mt={16} label="Enter New Password" />
-              <PasswordInput size="md" mt={16} label="Confirm New Password" />
-              <Button size="md" mt={20} className="w-full bg-primary"
-              onClick={() => navigate("/login")}>
+              <PasswordInput
+                radius="md"
+                size="md"
+                mt={16}
+                label="Enter New Password"
+              />
+              <PasswordInput
+                radius="md"
+                size="md"
+                mt={16}
+                label="Confirm New Password"
+              />
+              <Button
+                radius="md"
+                size="md"
+                mt={20}
+                className="w-full bg-primary"
+                onClick={() => navigate("/login")}
+              >
                 Continue
               </Button>
 
