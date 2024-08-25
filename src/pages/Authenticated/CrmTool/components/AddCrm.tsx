@@ -9,7 +9,7 @@ const AddCrm = ({ setActive }: IProps) => {
     <div>
       <div className="font-bold text-[#1E1E1E]">Select CRM</div>
       <div className="mt-6 flex flex-col sm:flex-row gap-5 sm:gap-10 sm:items-center">
-        <div className="">Select CRM of your choice</div>
+        <div>Select CRM of your choice</div>
         <Select
           size="md"
           placeholder="Click to drop down"
@@ -39,10 +39,10 @@ const AddCrm = ({ setActive }: IProps) => {
           Allow Closedeals to access contacts data from connected CRM account
         </div>
         <div className="flex gap-5 items-center">
-          <div className="flex h-[48px] rounded-md w-[52px] bg-black text-white font-medium text-center justify-center items-center">
+          <div className="flex h-[48px] cursor-pointer rounded-md w-[52px] bg-black text-white font-medium text-center justify-center items-center">
             Yes
           </div>
-          <div className="flex h-[48px] rounded-md w-[52px] border font-medium text-center justify-center items-center">
+          <div className="flex h-[48px] cursor-pointer rounded-md w-[52px] border font-medium text-center justify-center items-center">
             No
           </div>
         </div>

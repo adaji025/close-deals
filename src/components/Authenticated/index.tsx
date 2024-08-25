@@ -9,6 +9,7 @@ import Dashboard from "@pages/Authenticated/Dashboard";
 import CallHistory from "@pages/Authenticated/CallHistory";
 import CrmTool from "@pages/Authenticated/CrmTool";
 import CallReport from "@pages/Authenticated/CallReport";
+import Settings from "@pages/Authenticated/Settings";
 
 const Authenticated = () => {
   const [opened, { open, close }] = useDisclosure();
@@ -39,6 +40,7 @@ const Authenticated = () => {
             <Route path="/call-history" element={<CallHistory />} />
             <Route path="/call-report" element={<CallReport />} />
             <Route path="/crm-tool" element={<CrmTool />} />
+            <Route path="/settings" element={<Settings />} />
           </Routes>
         </div>
       </div>
