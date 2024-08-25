@@ -37,6 +37,7 @@ const Authenticated = () => {
           <Header open={open} />
           <Routes>
             <Route path="/" element={<Dashboard />} />
+            <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/call-history" element={<CallHistory />} />
             <Route path="/call-report" element={<CallReport />} />
             <Route path="/crm-tool" element={<CrmTool />} />

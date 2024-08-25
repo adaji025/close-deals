@@ -10,13 +10,13 @@ const useNotification = () => {
       message: `User logged out Login in to continue 😑`,
       color: "Yellow",
     });
-    localStorage.removeItem("_cls_token");
+    localStorage.removeItem("_closeDeals");
     navigate("/");
   };
 
   const handleError = (error: any) => {
     const logout = () => {
-      localStorage.removeItem("_cls_token");
+      localStorage.removeItem("_closeDeals");
       navigate("/");
     };
     if (error?.response?.status == 401) {

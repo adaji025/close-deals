@@ -1,7 +1,7 @@
 import axios from "axios";
 
 function getToken() {
-  let token = localStorage.getItem("_cls_token") ?? null;
+  let token = localStorage.getItem("_closeDeals") ?? null;
   return token;
 }
 
