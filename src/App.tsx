@@ -7,6 +7,7 @@ import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import Authenticated from "@components/Authenticated";
 import Unauthenticated from "@components/Unauthenticated";
 import { useEffect } from "react";
+import { Notifications } from "@mantine/notifications";
 
 export default function App() {
   const location = useLocation();
@@ -22,9 +23,10 @@ export default function App() {
     }
   }, []);
 
-  console.log(token)
+  console.log(token);
   return (
     <MantineProvider>
+      <Notifications position="top-right" />
       <Routes>
         <Route
           path="/*"

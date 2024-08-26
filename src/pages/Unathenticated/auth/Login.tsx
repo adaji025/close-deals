@@ -1,4 +1,5 @@
 import Logo from "@assets/svg/logo.svg";
+import useNotification from "@hooks/useNotification";
 import {
   Button,
   Checkbox,
@@ -8,11 +9,13 @@ import {
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { userLogin } from "@services/auth";
-import { Fragment, useState } from "react";
+import { Fragment, useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [loading, setLoading] = useState(false);
+
+  const { handleError } = useNotification();
   const navigate = useNavigate();
 
   const form = useForm({
@@ -29,15 +32,23 @@ const Login = () => {
       .then((res: any) => {
         console.log(res.data.data);
         localStorage.setItem("_closeDeals", res.data.data);
+        navigate("/dashboard");
       })
       .catch((err) => {
-        console.log(err);
+        handleError(err);
       })
       .finally(() => {
         setLoading(false);
-        navigate("/dashboard");
       });
   };
+
+  const validate = useCallback(() => {
+    if (form.values.email === "" || form.values.password === "") {
+      return true;
+    }
+    return false;
+  }, [form]);
+
   return (
     <Fragment>
       <LoadingOverlay visible={loading} />
@@ -61,6 +72,7 @@ const Login = () => {
                     label="Email"
                     radius="md"
                     {...form.getInputProps("email")}
+                    autoComplete="email"
                   />
                   <PasswordInput
                     size="md"
@@ -73,8 +85,9 @@ const Login = () => {
                     radius="md"
                     size="md"
                     mt={20}
-                    className="w-full bg-primary"
+                    className="w-full bg-primary disabled:bg-primary/80"
                     type="submit"
+                    disabled={validate()}
                   >
                     Log in
                   </Button>

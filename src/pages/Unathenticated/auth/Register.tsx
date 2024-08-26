@@ -5,14 +5,20 @@ import {
   PasswordInput,
   TextInput,
 } from "@mantine/core";
-import { Fragment, useState } from "react";
+import { Fragment, useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "@mantine/form";
 import { userSignUp } from "@services/auth";
+import { showNotification } from "@mantine/notifications";
+import useNotification from "@hooks/useNotification";
 
 const Register = () => {
   const [loading, setLoading] = useState(false);
   const [step, setStep] = useState(1);
+  const [error, setError] = useState("");
+  const [pw, setPw] = useState("");
+
+  const { handleError } = useNotification();
   const navigate = useNavigate();
 
   const form = useForm({
@@ -28,16 +34,54 @@ const Register = () => {
     setLoading(true);
 
     userSignUp(values)
-      .then((res) => {
-        console.log(res);
+      .then(() => {
+        showNotification({
+          title: "Success",
+          color: "green",
+          message: "User registration successful",
+        });
+        navigate("/login");
       })
       .catch((err) => {
-        console.log(err);
+        handleError(err);
       })
       .finally(() => {
         setLoading(false);
       });
   };
+
+  const validatePw = useCallback(() => {
+    if (form.values.password !== pw) {
+      setError("Passwords does not match");
+    } else {
+      setError("");
+    }
+  }, [pw]);
+
+  const validateFistStep = useCallback(() => {
+    if (
+      form.values.firstname === "" ||
+      form.values.lastname === "" ||
+      form.values.email === ""
+    ) {
+      return true;
+    }
+    return false;
+  }, [form]);
+
+  const validateForm = useCallback(() => {
+    if (
+      form.values.firstname === "" ||
+      form.values.lastname === "" ||
+      form.values.email === "" ||
+      form.values.password === "" ||
+      pw == ""
+    ) {
+      return true;
+    }
+    return false;
+  }, [form]);
+
   return (
     <Fragment>
       <LoadingOverlay visible={loading} />
@@ -81,9 +125,10 @@ const Register = () => {
                         type="button"
                         size="md"
                         mt={20}
-                        className="w-full bg-primary"
+                        className="w-full bg-primary disabled:bg-primary/80"
                         onClick={() => setStep(2)}
                         radius="md"
+                        disabled={validateFistStep()}
                       >
                         Next
                       </Button>
@@ -100,25 +145,33 @@ const Register = () => {
                           radius="md"
                           size="md"
                           mt={16}
-                          label="Confirm Password"
+                          label="Password"
                           {...form.getInputProps("password")}
                         />
                         <span className="text-sm">
                           Password must be 8 characters
                         </span>
                       </div>
-                      <PasswordInput
-                        radius="md"
-                        size="md"
-                        mt={16}
-                        label="Password"
-                      />
+
+                      <div>
+                        <PasswordInput
+                          radius="md"
+                          size="md"
+                          mt={16}
+                          label="Confirm Password"
+                          onKeyUp={validatePw}
+                          onChange={(e) => setPw(e.target.value)}
+                        />
+
+                        <span className="text-sm text-red-500">{error}</span>
+                      </div>
 
                       <Button
                         size="md"
                         mt={20}
-                        className="w-full bg-primary"
+                        className="w-full bg-primary disabled:bg-primary/80"
                         type="submit"
+                        disabled={validateForm()}
                       >
                         Get started
                       </Button>
