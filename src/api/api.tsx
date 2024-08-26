@@ -5,4 +5,5 @@ export const APIS = {
     login: `${api}/auth/signin`,
     register: `${api}/auth/signup`,
   },
+  PROSPECT: `${api}/prospect`,
 };

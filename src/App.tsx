@@ -23,7 +23,6 @@ export default function App() {
     }
   }, []);
 
-  console.log(token);
   return (
     <MantineProvider>
       <Notifications position="top-right" />
