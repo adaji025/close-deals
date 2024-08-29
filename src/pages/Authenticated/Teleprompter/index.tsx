@@ -1,20 +1,70 @@
-import { ColorPicker, Menu, Popover, Textarea } from "@mantine/core";
+import { Button, ColorPicker, Menu, Popover } from "@mantine/core";
 import { IoCloseOutline } from "react-icons/io5";
 import { IoSettingsOutline } from "react-icons/io5";
 import { GoChevronDown } from "react-icons/go";
 import { FiEye } from "react-icons/fi";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const Teleprompter = () => {
   const [fontSize, setFontSize] = useState(48);
   const [fontStyle, setFontStyles] = useState("normal");
   const [letterSpacing, setLetterSpacing] = useState(2);
   const [lineHeight, setLineHeight] = useState(1.5);
-  const [text, setText] = useState("");
   const [color, setColor] = useState("#000000");
   const [bgColor, setBgColor] = useState("transparent");
+  const [transcript, setTranscript] = useState("");
 
   const textRef = useRef(null);
+
+  useEffect(() => {
+    // Check if the browser supports SpeechRecognition
+    const SpeechRecognition =
+      window.SpeechRecognition || window.webkitSpeechRecognition;
+
+    if (!SpeechRecognition) {
+      console.error("Browser does not support Speech Recognition");
+      return;
+    }
+
+    // Create an instance of SpeechRecognition
+    const recognition = new SpeechRecognition();
+    recognition.lang = "en-US";
+    recognition.interimResults = true; // Enable interim results for real-time transcription
+    recognition.maxAlternatives = 1;
+
+    recognition.onresult = (event: { results: string | any[] }) => {
+      let interimTranscript = "";
+      for (let i = 0; i < event.results.length; i++) {
+        const result = event.results[i];
+        interimTranscript += result[0].transcript;
+      }
+      setTranscript(interimTranscript);
+    };
+
+    recognition.onerror = (event: { error: any }) => {
+      console.error("Speech recognition error:", event.error);
+    };
+
+    recognition.onend = () => {
+      recognition.start(); // Restart recognition for continuous real-time transcription
+    };
+
+    // Start the recognition when the component is mounted
+    navigator.mediaDevices
+      .getUserMedia({ audio: true })
+      .then((stream) => {
+        console.log(stream);
+        recognition.start();
+      })
+      .catch((error) => {
+        console.error("Error accessing audio device:", error);
+      });
+
+    // Clean up recognition on unmount
+    return () => {
+      recognition.stop();
+    };
+  }, []);
 
   return (
     <div className="flex">
@@ -41,7 +91,7 @@ const Teleprompter = () => {
             textAlign: "center",
           }}
         >
-          {text}
+          {transcript}
         </div>
 
         <div className="fixed bottom-3 left-3 text-sm">
@@ -192,7 +242,7 @@ const Teleprompter = () => {
           </div>
         </div>
 
-        <Textarea mt={16} onChange={(e) => setText(e.target.value)} />
+        <Button>Start</Button>
       </div>
     </div>
   );
