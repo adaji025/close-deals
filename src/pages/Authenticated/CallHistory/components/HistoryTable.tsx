@@ -57,7 +57,7 @@ const HistoryTable = () => {
                 key={index}
                 onClick={() => pagination.setPage(page)}
                 className={`w-[40px] h-[40px] flex justify-center items-center rounded text-sm ${
-                  pagination.active === page ? "bg-white" : "#007bff"
+                  pagination.active === page ? "bg-white" : ""
                 }`}
               >
                 {page}

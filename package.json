@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@google-cloud/speech": "^6.7.0",
     "@mantine/core": "7.12.1",
     "@mantine/dates": "^7.12.1",
     "@mantine/form": "^7.12.1",
@@ -27,6 +28,7 @@
     "redux-persist": "^6.0.0"
   },
   "devDependencies": {
+    "@types/chrome": "^0.0.270",
     "@types/node": "^22.4.0",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",

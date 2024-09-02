@@ -17,53 +17,46 @@ const Teleprompter = () => {
   const textRef = useRef(null);
 
   useEffect(() => {
-    // Check if the browser supports SpeechRecognition
-    const SpeechRecognition =
-      window.SpeechRecognition || window.webkitSpeechRecognition;
+    const captureAudio = async () => {
+      try {
+        // Check for the correct SpeechRecognition constructor
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
-    if (!SpeechRecognition) {
-      console.error("Browser does not support Speech Recognition");
-      return;
-    }
+        if (!SpeechRecognition) {
+          console.error('SpeechRecognition API not supported in this browser.');
+          return;
+        }
 
-    // Create an instance of SpeechRecognition
-    const recognition = new SpeechRecognition();
-    recognition.lang = "en-US";
-    recognition.interimResults = true; // Enable interim results for real-time transcription
-    recognition.maxAlternatives = 1;
+        // const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        // const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        // const source = audioContext.createMediaStreamSource(stream);
 
-    recognition.onresult = (event: { results: string | any[] }) => {
-      let interimTranscript = "";
-      for (let i = 0; i < event.results.length; i++) {
-        const result = event.results[i];
-        interimTranscript += result[0].transcript;
-      }
-      setTranscript(interimTranscript);
-    };
+        const recognition = new SpeechRecognition();
+        recognition.lang = 'en-US';
+        recognition.continuous = true;
+        recognition.interimResults = false;
 
-    recognition.onerror = (event: { error: any }) => {
-      console.error("Speech recognition error:", event.error);
-    };
+        recognition.onresult = (event: { results: { [x: string]: { transcript: any; }[]; }; resultIndex: string | number; }) => {
+          const newTranscript = event.results[event.resultIndex][0].transcript;
+          // setTranscript(prev => prev + ' ' + newTranscript);
+          setTranscript(newTranscript)
+        };
 
-    recognition.onend = () => {
-      recognition.start(); // Restart recognition for continuous real-time transcription
-    };
+        recognition.onerror = (event: { error: any; }) => {
+          console.error('Speech recognition error:', event.error);
+        };
 
-    // Start the recognition when the component is mounted
-    navigator.mediaDevices
-      .getUserMedia({ audio: true })
-      .then((stream) => {
-        console.log(stream);
+        recognition.onend = () => {
+          console.log('Speech recognition ended.');
+        };
+
         recognition.start();
-      })
-      .catch((error) => {
-        console.error("Error accessing audio device:", error);
-      });
-
-    // Clean up recognition on unmount
-    return () => {
-      recognition.stop();
+      } catch (err) {
+        console.error('Error capturing audio:', err);
+      }
     };
+
+    captureAudio();
   }, []);
 
   return (
