@@ -12,7 +12,8 @@ import CallReport from "@pages/Authenticated/CallReport";
 import Settings from "@pages/Authenticated/Settings";
 // import AudioCapture from "@pages/Authenticated/Teleprompter/test";
 // import Teleprompter from "@pages/Authenticated/Teleprompter";
-import Test2 from "@pages/Authenticated/Teleprompter/test2";
+// import Test2 from "@pages/Authenticated/Teleprompter/test2";
+import Test from "@pages/Authenticated/Teleprompter/test";
 
 const Authenticated = () => {
   const [opened, { open, close }] = useDisclosure();
@@ -27,7 +28,7 @@ const Authenticated = () => {
       </Drawer>
       {location.pathname === "/teleprompter" ? (
         <Routes>
-          <Route path="/teleprompter" element={<Test2 />} />
+          <Route path="/teleprompter" element={<Test />} />
         </Routes>
       ) : (
         <div className="flex items-start ">
