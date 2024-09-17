@@ -16,6 +16,7 @@ export default defineConfig({
       '@api': resolve(__dirname, 'src/api'),
       '@services': resolve(__dirname, 'src/services'),
       '@hooks': resolve(__dirname, 'src/hooks'),
+      '@zustand': resolve(__dirname, 'src/zustand'),
     },
   },
 });

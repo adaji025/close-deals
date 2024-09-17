@@ -10,14 +10,44 @@ import CallHistory from "@pages/Authenticated/CallHistory";
 import CrmTool from "@pages/Authenticated/CrmTool";
 import CallReport from "@pages/Authenticated/CallReport";
 import Settings from "@pages/Authenticated/Settings";
-// import AudioCapture from "@pages/Authenticated/Teleprompter/test";
-// import Teleprompter from "@pages/Authenticated/Teleprompter";
-// import Test2 from "@pages/Authenticated/Teleprompter/test2";
-import Test from "@pages/Authenticated/Teleprompter/test";
+import ProspectDrawer from "./ProspectDrawer";
+import Teleprompter from "@pages/Authenticated/Teleprompter";
+// import ProspectDrawer from "./ProspectDrawer";
 
 const Authenticated = () => {
   const [opened, { open, close }] = useDisclosure();
+  const [openedProspect, { open: showProspect, close: closeProspect }] =
+    useDisclosure();
   const location = useLocation();
+
+  function openModal() {
+    // Get the current scroll position
+    const scrollPosition = window.scrollY;
+
+    // Disable scrolling by fixing the body in place and preserving its scroll position
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${scrollPosition}px`;
+    document.body.style.left = "0";
+    document.body.style.right = "0";
+    document.body.style.overflowY = "scroll";
+    document.body.style.width = "100%";
+
+    showProspect();
+  }
+
+  function closeModal() {
+    // Re-enable scrolling by resetting body styles
+    document.body.style.position = "";
+    document.body.style.top = "";
+    document.body.style.left = "";
+    document.body.style.right = "";
+    document.body.style.overflowY = "";
+    document.body.style.width = "";
+
+    // Restore the previous scroll position
+    // window.scrollTo(0, scrollPosition);
+    closeProspect();
+  }
 
   return (
     <Fragment>
@@ -26,9 +56,10 @@ const Authenticated = () => {
           <SideNav close={close} />
         </div>
       </Drawer>
+      <ProspectDrawer opened={openedProspect} close={closeModal} />
       {location.pathname === "/teleprompter" ? (
         <Routes>
-          <Route path="/teleprompter" element={<Test />} />
+          <Route path="/teleprompter" element={<Teleprompter />} />
         </Routes>
       ) : (
         <div className="flex items-start ">
@@ -46,7 +77,7 @@ const Authenticated = () => {
           </div>
 
           <div className="w-full min-h-screen px-5 lg:px-10 pb-10 overflow-hidden">
-            <Header open={open} />
+            <Header open={open} showProspect={openModal} />
             <Routes>
               <Route path="/" element={<Dashboard />} />
               <Route path="/dashboard" element={<Dashboard />} />

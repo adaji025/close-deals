@@ -1,18 +1,21 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import Notification from "./Notification";
 import { RxHamburgerMenu } from "react-icons/rx";
-import { Avatar, Button } from "@mantine/core";
+import { Avatar, Button, Menu } from "@mantine/core";
 import { FaPlus } from "react-icons/fa6";
 import { Fragment } from "react/jsx-runtime";
 import AddProspect from "./AddProspect";
 import { useDisclosure } from "@mantine/hooks";
+import { useProspect } from "@zustand/useProspect";
 
 interface IProps {
   open: () => void;
+  showProspect: () => void;
 }
-const Header = ({ open }: IProps) => {
+const Header = ({ open, showProspect }: IProps) => {
   const [opened, { open: show, close }] = useDisclosure();
-  const navigate = useNavigate();
+  const { updateIsProspect } = useProspect();
+
   const location = useLocation();
 
   const pathname = decodeURIComponent(location.pathname);
@@ -29,6 +32,7 @@ const Header = ({ open }: IProps) => {
       .replace(/\//g, "") // Remove all slashes
       .replace(/-/g, " "); // Replace hyphens with spaces
   }
+  
   return (
     <Fragment>
       <AddProspect close={close} opened={opened} />
@@ -58,13 +62,31 @@ const Header = ({ open }: IProps) => {
           >
             <FaPlus size={16} color="white" />
           </div>
-          <Button
-            radius="md"
-            className="bg-primary"
-            onClick={() => navigate("/teleprompter")}
-          >
-            Start teleprompter
-          </Button>
+          <Menu>
+            <Menu.Target>
+              <Button
+                radius="md"
+                className="bg-primary"
+              >
+                Start teleprompter
+              </Button>
+            </Menu.Target>
+            <Menu.Dropdown>
+              <Menu.Item
+                onClick={() => {
+                  updateIsProspect(true);
+                  show();
+                }}
+              >
+                <div className="py-1 bg-[#E0D5F6] px-3 rounded-md">
+                  New prospect
+                </div>
+              </Menu.Item>
+              <Menu.Item onClick={showProspect}>
+                <div className="border px-3 py-1 rounded">Select from CRM</div>
+              </Menu.Item>
+            </Menu.Dropdown>
+          </Menu>
           <Notification />
           <Avatar size="md" />
         </div>

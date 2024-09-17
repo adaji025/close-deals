@@ -29,6 +29,7 @@
       "@api/*": ["src/api/*"],
       "@services/*": ["src/services/*"],
       "@hooks/*": ["src/hooks/*"],
+      "@zustand/*": ["src/zustand/*"],
     }
   },
   "include": ["src"],

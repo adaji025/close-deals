@@ -19,7 +19,7 @@ const useNotification = () => {
       localStorage.removeItem("_closeDeals");
       navigate("/");
     };
-    if (error?.response?.status == 401) {
+    if (error?.response?.data.status == "Forbidden") {
       showNotification({
         title: "Error",
         message: "Unauthorized access",

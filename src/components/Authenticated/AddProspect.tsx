@@ -12,6 +12,8 @@ import { showNotification } from "@mantine/notifications";
 import { addProspect } from "@services/prospect";
 import { countries } from "@utils/countries";
 import { Fragment, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useProspect } from "@zustand/useProspect";
 
 interface IProps {
   opened: boolean;
@@ -20,6 +22,9 @@ interface IProps {
 
 const AddProspect = ({ close, opened }: IProps) => {
   const [loading, setLoading] = useState(false);
+  const { isProspect } = useProspect();
+
+  const navigate = useNavigate();
 
   const { handleError } = useNotification();
   const form = useForm({
@@ -59,6 +64,11 @@ const AddProspect = ({ close, opened }: IProps) => {
       .finally(() => {
         setLoading(false);
       });
+  };
+
+  const telepromtNProspect = () => {
+    navigate("/teleprompter");
+    close();
   };
   return (
     <Fragment>
@@ -148,7 +158,15 @@ const AddProspect = ({ close, opened }: IProps) => {
             {...form.getInputProps("aboutCompany")}
           />
           <div className="flex gap-5">
-            <Button size="md" radius="md" className="bg-primary" type="submit">
+            <Button
+              size="md"
+              radius="md"
+              className="bg-primary"
+              type="submit"
+              onClick={() => {
+                isProspect ? telepromtNProspect() : close();
+              }}
+            >
               Complete
             </Button>
           </div>
