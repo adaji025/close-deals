@@ -6,4 +6,5 @@ export const APIS = {
     register: `${api}/auth/signup`,
   },
   PROSPECT: `${api}/prospect`,
+  DASHBOARD: `${api}/dashboard`,
 };

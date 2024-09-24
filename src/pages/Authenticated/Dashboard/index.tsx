@@ -2,8 +2,30 @@ import CallsChart from "./components/CallsChart";
 import IncreaseIcon from "@assets/svg/increase.svg";
 import DiamondIcon from "@assets/svg/diamond.svg";
 import Calls from "./components/Calls";
+import { useEffect, useState } from "react";
+import { getDashboardStats } from "@services/dashboard";
 
 const Dashboard = () => {
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    handleGetDashboardStats();
+  }, []);
+
+  const handleGetDashboardStats = () => {
+    setLoading(true);
+
+    getDashboardStats()
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
   return (
     <div>
       <div className="flex gap-5 flex-col xl:flex-row mt-10">
